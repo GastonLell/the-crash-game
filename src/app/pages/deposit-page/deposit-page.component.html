@@ -1,0 +1,13 @@
+<div class="deposit">
+  <div class="deposit_main">
+    <div class="deposit_main_input">
+      <mat-form-field hintLabel="Valor minimo 100" appearance="fill">
+        <mat-label>Ingrese dinero</mat-label>
+        <input matInput [(ngModel)]="amount" placeholder="Valor a ingresar" type="number">
+      </mat-form-field>
+    </div>
+    <div class="deposit_main_button">
+      <button mat-raised-button color="primary" (click)="setAmount(amount)" routerLink="/home">Jugar!</button>
+    </div>
+  </div>
+</div>

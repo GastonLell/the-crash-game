@@ -1,0 +1,15 @@
+<div class="configuration">
+  <div class="configuration_main">
+    <div class="configuration_main_input">
+      <mat-form-field hintLabel="Maximo 10 caracteres" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="name" maxlength="15" placeholder="Escriba su nombre">
+        <mat-hint align="end">{{name.length || 0}}/15</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="configuration_main_buttons">
+      <button mat-raised-button (click)="goTo('/home')" color="primary">Jugar!</button>
+      <button mat-stroked-button (click)="goTo('/deposit')" color="primary" >Depositar dinero</button>
+    </div>
+  </div>
+</div>

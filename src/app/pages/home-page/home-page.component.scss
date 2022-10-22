@@ -1,0 +1,31 @@
+.home{
+  display: grid;
+  place-content: center;
+  width: 100%;
+  &_chart{
+
+    min-width: 900px;
+    min-height: 400px;
+    width: 100%;
+    border: 1px solid #ccc;
+    &_header{
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 16px;
+      h4:first-child{
+        margin-right: 8px;
+      }
+    }
+  }
+  &_buttons{
+    width: 100%;
+    margin-top: 32px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+    .mat-raised-button, .mat-stroked-button{
+      width: 100%;
+    }
+  }
+}

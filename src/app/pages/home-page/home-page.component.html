@@ -1,0 +1,32 @@
+<div class="home">
+  <div class="home_chart">
+    <div class="home_chart_header">
+      <h4>Max bet: 0</h4>
+      <h4>Max profit: 0</h4>
+    </div>
+    <app-chart></app-chart>
+  </div>
+  <div class="home_buttons">
+    <button mat-raised-button color="warn" (click)="setPlayed({
+      isWinner: true,
+      betAmount: 500,
+      result: 500,
+      crashIn: 2.5}
+      )">Retirarme</button>
+
+    <a mat-stroked-button color="warn" routerLink="/deposit" >Depositar dinero</a>
+    <button mat-stroked-button color="warn" (click)="newPlayed()"  >Comenzar</button>
+
+
+  </div>
+
+  <div class="home_footer">
+    <h4>Ultimas jugadas</h4>
+    <div>
+      <ng-container *ngFor="let played of gamesPlayed">
+        <h4>{{played.crashIn}}</h4>
+      </ng-container>
+    </div>
+  </div>
+</div>
+

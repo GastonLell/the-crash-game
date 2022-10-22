@@ -1,0 +1,37 @@
+.deposit{
+  width: 100%;
+  min-height: auto;
+  display: grid;
+  place-content: center;
+
+  &_main{
+    width: 100%;
+    min-width: 500px;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    &_input{
+      width: 100%;
+    }
+    &_button{
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .mat-form-field {
+      width: 100%;
+    }
+
+    .mat-raised-button{
+      font-size: 32px;
+      width: auto;
+      padding: 20px;
+      margin-top: 20px;
+    }
+  }
+
+
+}
