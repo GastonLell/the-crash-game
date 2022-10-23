@@ -1,0 +1,32 @@
+.bets{
+  width: 100%;
+  // padding: 24px;
+  .mat-form-field{
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .mat-raised-button, .mat-stroked-button {
+    margin: 8px 0;
+    width: 100%;
+  }
+
+  &_history{
+    margin-top: 16px;
+    &_table{
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .isWinner{
+      h3{
+        color: rgb(97, 138, 97);
+      }
+    }
+    .lose{
+      h3{
+        color: #f44336
+      }
+    }
+  }
+}

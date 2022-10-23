@@ -1,32 +1,47 @@
 <div class="home">
-  <div class="home_chart">
-    <div class="home_chart_header">
-      <h4>Max bet: 0</h4>
-      <h4>Max profit: 0</h4>
+  <div class="home_layout">
+
+    <div class="home_layout_played">
+      <h2>ULTIMAS JUGADAS</h2>
+      <div>
+        <ng-container *ngFor="let played of (gamesPlayed | async)">
+          <h4>{{played.crashIn | number: '1.1-2'}}</h4>
+        </ng-container>
+      </div>
     </div>
-    <app-chart></app-chart>
-  </div>
-  <div class="home_buttons">
-    <button mat-raised-button color="warn" (click)="setPlayed({
-      isWinner: true,
-      betAmount: 500,
-      result: 500,
-      crashIn: 2.5}
-      )">Retirarme</button>
 
-    <a mat-stroked-button color="warn" routerLink="/deposit" >Depositar dinero</a>
-    <button mat-stroked-button color="warn" (click)="newPlayed()"  >Comenzar</button>
+    <div class="home_layout_chart">
+      <div class="home_chart">
+        <div class="home_chart_header">
+          <h4>Max bet: 0</h4>
+          <h4>Max profit: 0</h4>
+        </div>
+        <app-chart></app-chart>
+        <ng-container *ngIf="lastResult && !(gameInProgress | async)">
+          <div class="home_chart_result">
+            <h2>Crash!</h2>
+            <h3>{{lastResult.value | number: '1.1-2'}}</h3>
 
+            <div class="home_chart_result_timer">
+              <h4>Momento para apostar!</h4>
+              <h2>{{timer | async}}</h2>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="home_buttons">
 
-  </div>
+        <button [disabled]="!(gameInProgress | async)" mat-raised-button color="warn"
+          (click)="backingOut()">Retirarme</button>
 
-  <div class="home_footer">
-    <h4>Ultimas jugadas</h4>
-    <div>
-      <ng-container *ngFor="let played of gamesPlayed">
-        <h4>{{played.crashIn}}</h4>
-      </ng-container>
+      </div>
+    </div>
+
+    <div class="home_layout_bets">
+      <app-bets></app-bets>
     </div>
   </div>
+
+
 </div>
 

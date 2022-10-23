@@ -9,21 +9,28 @@ import { ChartComponent } from './components/chart/chart.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input'
-
+import {MatTableModule} from '@angular/material/table'
 
 import {NgxChartsModule } from '@swimlane/ngx-charts';
+import { BetsComponent } from './components/bets/bets.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
     NavBarComponent,
-    ChartComponent
+    ChartComponent,
+    BetsComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
+    RouterModule,
+    MatTableModule,
 
     NgxChartsModule,
 
@@ -34,7 +41,8 @@ import {NgxChartsModule } from '@swimlane/ngx-charts';
     MatDialogModule,
     MatInputModule,
     ChartComponent,
-
+    BetsComponent,
+    MatTableModule
 
   ]
 })

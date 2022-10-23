@@ -12,13 +12,7 @@ export class ChartComponent implements OnInit {
   public dataCrash: DataChart[] = [];
   constructor(private crashService: CrashService) {}
   ngOnInit(): void {
-    this.crashService.newGame().subscribe((resp) => {
-      this.data[0].series = [...this.data[0].series, resp];
-
-
-      this.data = [...this.data]
-      console.log(resp);
-    });
+    this.getCrashData()
   }
 
   view: [number, number] = [900, 400];
@@ -64,33 +58,13 @@ export class ChartComponent implements OnInit {
       ],
     },
   ];
-  // [
-  //   {
-  //     "value": 0,
-  //     "name": "0"
-  //   },
-  //   {
-  //     "value": 45,
-  //     "name": "1"
-  //   },
-  //   {
-  //     "value": 50,
-  //     "name": "2"
-  //   },
-  //   {
-  //     "value": 100,
-  //     "name": "3"
-  //   },
-  //   {
-  //     "value": 200,
-  //     "name": "4"
-  //   },
-  //   {
-  //     "value": 500,
-  //     "name": "5"
-  //   },
 
-  // ]
+  getCrashData(){
+    this.crashService.dataCrash$.subscribe((resp: DataChart[]) => {
+      this.data[0].series = resp;
+      this.data = [...this.data]
+    })
+  }
 
   onSelect(data: any): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));

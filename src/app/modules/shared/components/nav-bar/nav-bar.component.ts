@@ -13,7 +13,7 @@ export class NavBarComponent implements OnInit {
   constructor(private walletService: WalletService) {
   }
   ngOnInit(): void {
-   this.amountTotal = this.walletService.walletAmount;
+   this.amountTotal = this.walletService.walletAmount$;
   }
 
 }

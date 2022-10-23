@@ -1,30 +1,67 @@
-.home{
+.home {
   display: grid;
-  place-content: center;
+  // place-content: center;
   width: 100%;
-  &_chart{
+  &_layout {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 32px;
+    grid-row-gap: 0px;
 
+  }
+
+  &_chart {
+    position: relative;
     min-width: 900px;
     min-height: 400px;
     width: 100%;
     border: 1px solid #ccc;
-    &_header{
+    display: flex;
+    flex-direction: column;
+    &_header {
       display: flex;
       justify-content: flex-end;
       margin-right: 16px;
-      h4:first-child{
+      h4:first-child {
         margin-right: 8px;
       }
     }
+    &_result {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      opacity: 0.8;
+      display: grid;
+      place-content: center;
+      h2 {
+        font-size: 40px;
+        margin-bottom: 32px;
+      }
+      h3 {
+        font-size: 80px;
+      }
+      &_timer{
+        width: 100%;
+        margin-top: 24px;
+        h4, h2{
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
   }
-  &_buttons{
+  &_buttons {
     width: 100%;
     margin-top: 32px;
     display: inline-flex;
     flex-wrap: wrap;
     gap: 16px;
     justify-content: space-between;
-    .mat-raised-button, .mat-stroked-button{
+    .mat-raised-button {
       width: 100%;
     }
   }
