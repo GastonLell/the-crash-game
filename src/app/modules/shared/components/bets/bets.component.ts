@@ -65,11 +65,9 @@ export class BetsComponent implements OnInit, OnDestroy {
   private checkAmounts(){
     this.walletService.walletAmount$.pipe(takeUntil(this.destroy$)).subscribe(amount => {
       this.generalAmount = amount;
-      console.log('amount', amount)
 
       if(amount === 0){
         this.amountIsZero = true;
-        console.log('es cero')
       } else{
         this.amountIsZero = false;
       }

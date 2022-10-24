@@ -93,16 +93,12 @@ export class ChartComponent implements OnInit {
 
   private checkSize(size: number){
     if(size < 4000 && size > 992){
-      console.log('3 asd')
-
       this.view = [this.getScreenWidth - 500, 400]
     }
     if(size < 360){
-      console.log('1 asd')
       this.view = [320, 400]
     }
     if(size < 992 && size > 360){
-      console.log('2 asd')
       this.view = [this.getScreenWidth - 40, 400]
     }
 

@@ -34,13 +34,11 @@ export class WalletService {
   public checkAmount(amount?: number): boolean{
 
     if(this._walletAmount$.getValue() == 0){
-      console.log('no hay fondos')
       this.insufficientFunds.next(true)
       return false;
     }
     if(amount){
       if(this._walletAmount$.getValue() - amount < 0){
-        console.log('fondos insuficientes')
         this.insufficientFunds.next(true)
         return false;
       }

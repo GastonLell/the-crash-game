@@ -70,7 +70,6 @@ export class CrashService {
       .subscribe({
         next: (timer: number) => {
           if (this.gameInProgress$.getValue()) {
-            console.log(timer);
             let data: DataChart = {
               value: (numAux += Math.random()),
               name: timer.toString(),
