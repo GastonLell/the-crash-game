@@ -1,13 +1,18 @@
 <div class="deposit">
   <div class="deposit_main">
+
     <div class="deposit_main_input">
       <mat-form-field hintLabel="Valor minimo 100" appearance="fill">
         <mat-label>Ingrese dinero</mat-label>
-        <input matInput [(ngModel)]="amount" placeholder="Valor a ingresar" type="number">
+        <input matInput [(ngModel)]="amount" (ngModelChange)="checkAmount($event)" placeholder="Valor a ingresar" type="number" #input>
       </mat-form-field>
+      <div *ngIf="isMin" class="deposit_main_input_error">
+        <h5>El valor ingresado debe ser mayor a $100.</h5>
+      </div>
     </div>
+
     <div class="deposit_main_button">
-      <button mat-raised-button color="primary" (click)="setAmount(amount)" routerLink="/home">Jugar!</button>
+      <button type="submit" [disabled]="isMin" mat-raised-button color="primary" (click)="setAmount(amount)" routerLink="/home">Jugar!</button>
     </div>
   </div>
 </div>

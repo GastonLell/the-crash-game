@@ -6,14 +6,19 @@ import { WalletService } from 'src/app/core/services/wallet.service';
   templateUrl: './deposit-page.component.html',
   styleUrls: ['./deposit-page.component.scss']
 })
-export class DepositPageComponent implements OnInit {
+export class DepositPageComponent {
   public amount: number = 0;
+
+  public isMin: boolean = false;
+
   constructor(private walletService: WalletService) { }
 
-  ngOnInit(): void {
-  }
-
   setAmount(amount: number){
-    this.walletService.depositMoney(amount)
+    if(!this.isMin) {
+      this.walletService.depositMoney(amount)
+    }
+  }
+  checkAmount(event$: number): void{
+    this.isMin = event$ < 100;
   }
 }

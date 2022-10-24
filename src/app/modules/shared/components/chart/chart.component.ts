@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {  Component, OnInit, HostListener  } from '@angular/core';
 import { Color } from 'node_modules/@swimlane/ngx-charts/lib/utils/color-sets';
 import { DataChart } from 'src/app/core/interface/GamesPlayed';
 import { CrashService } from 'src/app/core/services/crash.service';
-
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
@@ -10,12 +9,7 @@ import { CrashService } from 'src/app/core/services/crash.service';
 })
 export class ChartComponent implements OnInit {
   public dataCrash: DataChart[] = [];
-  constructor(private crashService: CrashService) {}
-  ngOnInit(): void {
-    this.getCrashData()
-  }
-
-  view: [number, number] = [900, 400];
+  view: [number, number] = [0,0];
   // options
   legend: boolean = false;
   showLabels: boolean = false;
@@ -41,23 +35,42 @@ export class ChartComponent implements OnInit {
     {
       name: '',
       series: [
+        { name: '0', value: 7.5 },
+        { name: '0', value: 7 },
+        { name: '0', value: 6.5 },
         { name: '0', value: 6 },
-        { name: '0', value: 5 },
-        { name: '0', value: 4.5 },
-        { name: '0', value: 4 },
-        { name: '1', value: 3.5 },
-        { name: '2', value: 3 },
-        { name: '3', value: 2.5 },
-        { name: '4', value: 2 },
-        { name: '5', value: 1.5},
-        { name: '6', value: 1 },
-        { name: '7', value: 0.5 },
-        { name: '8', value: 0 },
-        { name: '9', value: 0 },
-        { name: '10', value: 0 },
+        { name: '1', value: 5.5 },
+        { name: '2', value: 5 },
+        { name: '3', value: 4.5 },
+        { name: '4', value: 4 },
+        { name: '5', value: 3.5},
+        { name: '6', value: 3 },
+        { name: '7', value: 2.5 },
+        { name: '8', value: 2 },
+        { name: '9', value: 1.5 },
+        { name: '10', value: 1 },
       ],
     },
   ];
+
+
+  constructor(private crashService: CrashService) {
+    this.getScreenWidth = window.innerWidth;
+
+    this.checkSize(this.getScreenWidth)
+
+  }
+
+  public getScreenWidth: any;
+  ngOnInit(): void {
+
+    this.getCrashData()
+  }
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
+    this.checkSize(this.getScreenWidth)
+  }
 
   getCrashData(){
     this.crashService.dataCrash$.subscribe((resp: DataChart[]) => {
@@ -77,4 +90,22 @@ export class ChartComponent implements OnInit {
   onDeactivate(data: any): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
+
+  private checkSize(size: number){
+    if(size < 4000 && size > 992){
+      console.log('3 asd')
+
+      this.view = [this.getScreenWidth - 500, 400]
+    }
+    if(size < 360){
+      console.log('1 asd')
+      this.view = [320, 400]
+    }
+    if(size < 992 && size > 360){
+      console.log('2 asd')
+      this.view = [this.getScreenWidth - 40, 400]
+    }
+
+  }
+
 }

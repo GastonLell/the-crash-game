@@ -20,8 +20,6 @@ export class WalletService {
   public depositMoney(moneyIncome: number){
     let amount = this._walletAmount$.getValue() + moneyIncome;
     this._walletAmount$.next(amount);
-    // this.checkinsufficientFunds();
-
   }
 
 
@@ -31,26 +29,24 @@ export class WalletService {
 
   public subtractBet(){
       this._walletAmount$.next(this._walletAmount$.getValue() - this.betAmount)
-
-
   }
 
-//   public checkinsufficientFunds(): boolean{
-//     console.log('desde check', this._walletAmount$.getValue())
-//     console.log('this._walletAmount$.getValue() == 0', this._walletAmount$.getValue() == 0)
-//     if(this._walletAmount$.getValue() == 0){
-//       this.insufficientFunds.next(true)
-//       return true
-//     };
-// // VERRRRRRR
-//     console.log('this._walletAmount$.getValue() - this.betAmount < 0', this._walletAmount$.getValue() - this.betAmount < 0)
-//     if (this._walletAmount$.getValue() - this.betAmount < 0){
-//       this.insufficientFunds.next(true)
-//       return true
-//     }
+  public checkAmount(amount?: number): boolean{
 
-//     this.insufficientFunds.next(false)
-//     return false;
-//   }
+    if(this._walletAmount$.getValue() == 0){
+      console.log('no hay fondos')
+      this.insufficientFunds.next(true)
+      return false;
+    }
+    if(amount){
+      if(this._walletAmount$.getValue() - amount < 0){
+        console.log('fondos insuficientes')
+        this.insufficientFunds.next(true)
+        return false;
+      }
+    }
+    this.insufficientFunds.next(false)
+    return true;
+  }
   constructor() { }
 }

@@ -3,7 +3,8 @@ export interface GamePlayed {
   isWinner: boolean,
   betAmount: number,
   result: number,
-  crashIn: number | undefined
+  crashIn: number | undefined,
+  date: Date;
 }
 export interface DataChart {
   value: number,

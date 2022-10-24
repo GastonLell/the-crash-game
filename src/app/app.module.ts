@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 // PAGES
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { DepositPageComponent } from './pages/deposit-page/deposit-page.component';
 import { ConfigurationPageComponent } from './pages/configuration-page/configuration-page.component';
 
@@ -23,7 +22,6 @@ import { WalletService } from './core/services/wallet.service';
   declarations: [
     AppComponent,
     HomePageComponent,
-    ProfilePageComponent,
     WelcomePageComponent,
     DepositPageComponent,
     ConfigurationPageComponent,

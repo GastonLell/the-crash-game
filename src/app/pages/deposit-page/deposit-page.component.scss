@@ -1,8 +1,15 @@
+@import 'src/styles/_breakpoints.scss';
+
 .deposit{
   width: 100%;
   min-height: auto;
   display: grid;
   place-content: center;
+
+  @include mq-mobile{
+    display: block;
+  }
+
 
   &_main{
     width: 100%;
@@ -12,8 +19,30 @@
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
+
+    @include mq-mobile{
+      min-width: 100%;
+    }
+
     &_input{
       width: 100%;
+
+      &_error{
+        margin-top: 16px;
+        border: 1px solid #f44336;
+        background-color: #ffdcda;
+        display: grid;
+        place-content: center;
+        padding: 8px;
+        height: auto;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        h5{
+          color: #f44336;
+          text-align: center;
+          margin: 0px;
+        }
+      }
     }
     &_button{
       width: 100%;

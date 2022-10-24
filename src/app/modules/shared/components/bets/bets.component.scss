@@ -9,7 +9,21 @@
     margin: 8px 0;
     width: 100%;
   }
-
+  &_message_insufficientFunds{
+    border: 1px solid #f44336;
+    background-color: #ffdcda;
+    display: grid;
+    place-content: center;
+    padding: 8px;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    h5{
+      color: #f44336;
+      text-align: center;
+      margin: 0px;
+    }
+  }
   &_history{
     margin-top: 16px;
     &_table{
@@ -29,4 +43,12 @@
       }
     }
   }
+}
+
+
+.sub-title{
+  padding: 4px;
+  text-align: center;
+  border: 1px solid #f44336;
+  color: #f44336;
 }

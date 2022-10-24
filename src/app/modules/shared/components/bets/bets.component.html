@@ -1,29 +1,37 @@
 <div class="bets">
-  <h2>APUESTAS</h2>
-  <h3>Apuesta actual: {{currentBetAmount | currency}}</h3>
-  <mat-form-field hintLabel="Valor minimo 100" appearance="fill">
-    <input matInput [(ngModel)]="betAmount" placeholder="Valor a ingresar" type="number">
+  <h2 class="sub-title">APUESTAS</h2>
+  <h3>Apuesta: {{currentBetAmount | currency}}</h3>
+  <mat-form-field hintLabel="Valor minimo $50" appearance="fill">
+    <input matInput [(ngModel)]="betAmount" (ngModelChange)="setBetAmount($event)" placeholder="Valor a ingresar" type="number">
   </mat-form-field>
   <ng-container *ngIf="!activateBet; else waitingResults ">
-    <button [disabled]="gameInProgress$ | async" mat-raised-button color="primary"
+    <button [disabled]="(gameInProgress$ | async) || insufficientFunds || amountIsZero  || minError" mat-raised-button color="primary"
       (click)="setBetsAmount()">Apostar</button>
   </ng-container>
   <a mat-stroked-button color="warn" routerLink="/deposit">Depositar dinero</a>
 
-
+  <div *ngIf="amountIsZero && !(gameInProgress$ | async) " class="bets_message_insufficientFunds">
+    <h5>Fondos insuficientes para realizar apuestas. Ingrese dinero para continuar.</h5>
+  </div>
+  <div *ngIf="minError && !amountIsZero" class="bets_message_insufficientFunds">
+    <h5>El valor ingresado debe ser mayor a $50.</h5>
+  </div>
+  <div *ngIf="insufficientFunds && !amountIsZero" class="bets_message_insufficientFunds">
+    <h5>El monto ingresado supera el monto disponible para operar.</h5>
+  </div>
   <div class="bets_history">
     <h2>ULTIMAS APUESTAS</h2>
     <div class="bets_history_table">
       <h3>Crash</h3>
       <h3>Apuesta</h3>
-      <h3>Ganancia</h3>
+      <h3>Ganancia/Perdida</h3>
     </div>
-    <ng-container *ngFor="let played of (gamesPlayed | async)">
+    <ng-container *ngFor="let played of (gamesPlayed$ | async)">
       <div class="bets_history_table" [ngClass]="{'isWinner': played.isWinner, 'lose': !played.isWinner}"
         *ngIf="played.iBet">
         <h3>{{played.crashIn | number: '1.2-2'}}</h3>
         <h3>{{played.betAmount | number: '1.2-2'}}</h3>
-        <h3>{{played.result | number: '1.2-2'}}</h3>
+        <h3>{{ played.result | number: '1.2-2'}}</h3>
       </div>
     </ng-container>
   </div>

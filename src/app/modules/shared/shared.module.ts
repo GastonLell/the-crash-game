@@ -9,13 +9,11 @@ import { ChartComponent } from './components/chart/chart.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input'
-import {MatTableModule} from '@angular/material/table'
 
 import {NgxChartsModule } from '@swimlane/ngx-charts';
 import { BetsComponent } from './components/bets/bets.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
 
 @NgModule({
   declarations: [
@@ -30,8 +28,6 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
     MatInputModule,
     RouterModule,
-    MatTableModule,
-
     NgxChartsModule,
 
   ],
@@ -41,9 +37,7 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
     MatInputModule,
     ChartComponent,
-    BetsComponent,
-    MatTableModule
-
+    BetsComponent
   ]
 })
 export class SharedModule { }

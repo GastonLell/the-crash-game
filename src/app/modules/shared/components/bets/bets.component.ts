@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {  Observable, share, Subject, takeUntil } from 'rxjs';
 import { DataChart, GamePlayed } from 'src/app/core/interface/GamesPlayed';
 import { CrashService } from 'src/app/core/services/crash.service';
 import { WalletService } from 'src/app/core/services/wallet.service';
@@ -9,11 +9,17 @@ import { WalletService } from 'src/app/core/services/wallet.service';
   templateUrl: './bets.component.html',
   styleUrls: ['./bets.component.scss']
 })
-export class BetsComponent implements OnInit {
+export class BetsComponent implements OnInit, OnDestroy {
+  private destroy$: Subject<void> = new Subject();
   public betAmount: number = 0;
-  public dataCrash$: Observable<DataChart[]> = this.crashService.dataCrash$.asObservable()
-  public gamesPlayed: Observable<GamePlayed[]> = this.crashService.gamesPlayed$.asObservable();
-  public gameInProgress$: Observable<boolean> = this.crashService.gameInProgress$.asObservable()
+  public generalAmount: number = 0;
+  public dataCrash$: Observable<DataChart[]> = this.crashService.dataCrash$.pipe(share())
+  public gamesPlayed$: Observable<GamePlayed[]> = this.crashService.gamesPlayed$.pipe(share());
+  public gameInProgress$: Observable<boolean> = this.crashService.gameInProgress$.pipe(share())
+
+  public amountIsZero: boolean = false;
+  public insufficientFunds: boolean = false;
+  public minError: boolean = false;
 
   get currentBetAmount(): number{
     return this.walletService.betAmount
@@ -24,10 +30,55 @@ export class BetsComponent implements OnInit {
 
   constructor(private crashService: CrashService, private walletService: WalletService) { }
 
-  ngOnInit(): void {}
 
-  public setBetsAmount(){
+  ngOnInit(): void {
+    this.checkAmounts()
+    this.insufficientFunds = this.generalAmount < this.betAmount
+
+    this.gamesPlayed$.subscribe(console.log)
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+  }
+
+  public setBetsAmount(): void{
     this.walletService.setBetAmount(this.betAmount);
     this.crashService.setActivateBet(true)
+    this.betAmount = 0;
   }
+
+  public setBetAmount($event: number) {
+    if($event < 50) {
+      this.minError = true;
+    } else {
+      this.minError = false;
+    }
+
+    if(this.generalAmount < $event){
+      this.insufficientFunds = true;
+    } else {
+      this.insufficientFunds = false;
+    }
+  }
+
+  private checkAmounts(){
+    this.walletService.walletAmount$.pipe(takeUntil(this.destroy$)).subscribe(amount => {
+      this.generalAmount = amount;
+      console.log('amount', amount)
+
+      if(amount === 0){
+        this.amountIsZero = true;
+        console.log('es cero')
+      } else{
+        this.amountIsZero = false;
+      }
+
+      if(amount - this.betAmount < 0) {
+        this.insufficientFunds = true
+      }
+
+    })
+  }
+
 }

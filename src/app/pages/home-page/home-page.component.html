@@ -2,19 +2,22 @@
   <div class="home_layout">
 
     <div class="home_layout_played">
-      <h2>ULTIMAS JUGADAS</h2>
-      <div>
-        <ng-container *ngFor="let played of (gamesPlayed | async)">
-          <h4>{{played.crashIn | number: '1.1-2'}}</h4>
-        </ng-container>
+      <h2 class="sub-title">ULTIMOS CRASH!</h2>
+      <div class="home_layout_played_content">
+        <ng-container *ngFor="let played of gamesPlayed; let i = index">
+          <div class="home_layout_played_content_detail">
+            <h4 class="home_layout_played_content_detail_position">{{i + 1}}</h4>
+            <h4>{{played.crashIn | number: '1.1-2'}}</h4>
+          </div>
+          </ng-container>
       </div>
     </div>
 
     <div class="home_layout_chart">
       <div class="home_chart">
         <div class="home_chart_header">
-          <h4>Max bet: 0</h4>
-          <h4>Max profit: 0</h4>
+          <h4>Max bet: {{isMaxBet | number: '1.2-2'}}</h4>
+          <h4>Max profit: {{isMaxProfit | number: '1.2-2'}}</h4>
         </div>
         <app-chart></app-chart>
         <ng-container *ngIf="lastResult && !(gameInProgress | async)">
@@ -31,7 +34,7 @@
       </div>
       <div class="home_buttons">
 
-        <button [disabled]="!(gameInProgress | async)" mat-raised-button color="warn"
+        <button [disabled]="!(gameInProgress | async) || !activateBet" mat-raised-button color="warn"
           (click)="backingOut()">Retirarme</button>
 
       </div>
@@ -44,4 +47,3 @@
 
 
 </div>
-

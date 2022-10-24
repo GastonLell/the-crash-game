@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Data } from '@angular/router';
 import {
   BehaviorSubject,
   interval,
-  Subject,
   Subscription,
-  take,
-  takeUntil,
+  take
 } from 'rxjs';
 import {
   DataChart,
@@ -65,7 +62,7 @@ export class CrashService {
 
     this.dataCrash$.next([]);
     this.setGameInProgress(true);
-    let numAux: number = 0;
+    let numAux: number = 1;
     let repetitions: number = this.generateRandomNumber(3, 10);
 
     this.subscription = interval(1000)
@@ -93,7 +90,7 @@ export class CrashService {
         complete: () => {
           this.setGameInProgress(false);
           this.setActivateBet(false)
-
+          this.walletService.setBetAmount(0);
           this.bettingTime();
         },
       });
@@ -105,6 +102,8 @@ export class CrashService {
     this.subscription.unsubscribe();
     this.setGameInProgress(false);
     this.setActivateBet(false)
+    this.walletService.setBetAmount(0);
+
 
     this.bettingTime();
   }
