@@ -19,7 +19,7 @@ export class CrashService {
   // configuration variables
   private subscription!: Subscription;
   private subscriptionTimer!: Subscription;
-  public timer$: BehaviorSubject<number> = new  BehaviorSubject<number>(0)
+  public timer$: BehaviorSubject<number> = new  BehaviorSubject<number>(5)
 
   public gameInProgress$: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
@@ -126,7 +126,9 @@ export class CrashService {
         },
         error: (error) =>
           console.error('Error en contador BETTING TIME', error),
-        complete: () => this.newGame(),
+        complete: () => {
+          this.timer$.next(5)
+          this.newGame()},
       });
     return this.subscription;
   }
