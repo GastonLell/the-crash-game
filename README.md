@@ -1,7 +1,7 @@
 
 # The crash game
 
-(DEMO) = https://gastonlell.github.io/the-crash-game/
+(DEMO) = https://gastonlell.github.io/the-crash-game/welcome
 
 A tener en cuenta:
 
