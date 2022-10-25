@@ -1,6 +1,8 @@
 
 # The crash game
 
+(DEMO) = https://gastonlell.github.io/the-crash-game/
+
 A tener en cuenta:
 
 - Se debe cargar dinero para poder realizar una apuesta. El monto minimo es de $100, las apuestas deben ser mayores a $50.
