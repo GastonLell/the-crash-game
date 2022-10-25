@@ -18,8 +18,6 @@ A tener en cuenta:
 - Angular material 14.2.0
 - ngx-charts 20.1.0
 
-## Demo
-image.png
 
 # TheCrashGame
 
