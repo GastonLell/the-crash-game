@@ -3,6 +3,9 @@
 .home {
   display: grid;
   width: 100%;
+  &_name{
+    text-align: center;
+  }
   &_layout {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;

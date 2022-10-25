@@ -10,6 +10,8 @@ import { WalletService } from 'src/app/core/services/wallet.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit, OnDestroy {
+  userName: null| string = 'Player 1';
+
   private destroy: Subject<void> = new Subject()
   public lastResult: DataChart | null = null
   public dataChart: DataChart[] = [];
@@ -24,7 +26,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
     return this.crashService.activateBet$.getValue();
   }
 
-  constructor(private walletService: WalletService, private crashService: CrashService) {  }
+  constructor(private walletService: WalletService, private crashService: CrashService) {
+    if(localStorage.getItem('name')){
+      this.userName = localStorage.getItem('name')
+    }
+  }
 
 
   ngOnInit(): void {

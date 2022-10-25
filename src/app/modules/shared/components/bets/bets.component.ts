@@ -34,8 +34,6 @@ export class BetsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.checkAmounts()
     this.insufficientFunds = this.generalAmount < this.betAmount
-
-    this.gamesPlayed$.subscribe(console.log)
   }
 
   ngOnDestroy(): void {

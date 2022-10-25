@@ -1,3 +1,26 @@
+
+# The crash game
+
+A tener en cuenta:
+
+- Se debe cargar dinero para poder realizar una apuesta. El monto minimo es de $100, las apuestas deben ser mayores a $50.
+
+- Una vez que el contador termina (5 segundos) ya no se pueden realizar apuestas.
+
+- Al comenzar una partida podras retirarte en cualquier momento antes de que se genere un 'Crash'. De este modo obtendras las ganancias.
+
+- Si se genera un crash y no presionaste el boton para retirarte perderas automaticamente tu apuesta.
+
+
+## Tecnologias utilizadas:
+
+- Angular 14.2.0
+- Angular material 14.2.0
+- ngx-charts 20.1.0
+
+## Demo
+image.png
+
 # TheCrashGame
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
@@ -5,23 +28,3 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
