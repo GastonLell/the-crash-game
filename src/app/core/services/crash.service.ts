@@ -19,7 +19,7 @@ export class CrashService {
   // configuration variables
   private subscription!: Subscription;
   private subscriptionTimer!: Subscription;
-  public timer$: BehaviorSubject<number> = new  BehaviorSubject<number>(5)
+  public timer$: BehaviorSubject<number> = new  BehaviorSubject<number>(0)
 
   public gameInProgress$: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
